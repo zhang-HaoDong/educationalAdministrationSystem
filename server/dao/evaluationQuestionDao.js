@@ -1,21 +1,21 @@
 const { EvaluationQuestion } = require('../models')
 
 // 添加一个评教问题
-export async function addEvaluationQuestion(data) {
+module.exports.addEvaluationQuestion = async function (data) {
     return await EvaluationQuestion.create({
         evaluationQuestion: data.question
     })
 }
 
 // 删除一个评教问题
-export async function deleteEvaluationById(id) {
+module.exports.deleteEvaluationById = async function (id) {
     return await EvaluationQuestion.deleteOne({
         _id: id
     })
 }
 
 // 修改一个评教问题
-export async function updateEvaluationQuestion(id, { question }) {
+module.exports.updateEvaluationQuestion = async function (id, { question }) {
     return await EvaluationQuestion.updateOne({
         _id: id
     }, {
@@ -24,11 +24,11 @@ export async function updateEvaluationQuestion(id, { question }) {
 }
 
 // 获取所有评教问题
-export async function getAllEvaluation() {
+module.exports.getAllEvaluation = async function () {
     return await EvaluationQuestion.find()
 }
 
 //根据id获取评教问题
-export async function getEvaluationQuestionById(id){
+module.exports.getEvaluationQuestionById = async function (id) {
     return await EvaluationQuestion.findById(id)
 }

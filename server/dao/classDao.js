@@ -29,3 +29,7 @@ module.exports.updateClass = async function (id, className) {
     })
 }
 
+// 根据id查询班级
+module.exports.getClassById = async function(id){
+    return await Class.findById(id)
+}
