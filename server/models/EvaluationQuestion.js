@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 const evaluationQuestionSchema = new mongoose.Schema({
     evaluationQuestion: {
-        question: srting
+        question: String
     }
 })
 
-module.exports = mongoose.model('Evaluation',evaluationQuestionSchema)
+module.exports = mongoose.model('EvaluationQuestion',evaluationQuestionSchema)
