@@ -32,3 +32,8 @@ module.exports.getAllNAN = async function () {
 module.exports.getAllNANByPage = async function ({ current, pageSize }) {
     return await NAN.find().limit(pageSize).skip((current - 1) * pageSize)
 }
+
+// 根据id获取新闻
+module.exports.getNANById = async function(id){
+    return await NAN.findById(id)
+}

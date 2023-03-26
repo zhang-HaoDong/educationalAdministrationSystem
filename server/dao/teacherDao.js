@@ -37,3 +37,8 @@ module.exports.getTeacherByPage = async function ({ current, pageSize }) {
 module.exports.getTeacherById = async function (id) {
     return await Teacher.findById(id)
 }
+
+// 查询教师是否存在
+module.exports.isExistTeacher = async function(teacherInfo){
+    return await Teacher.exists(teacherInfo)
+}

@@ -4,7 +4,7 @@ const { ClassSchedule } = require('../models/');
 // 新增一个课表
 module.exports.addClassSchedule = async function (info) {
     return await ClassSchedule.create({
-        courses: info
+        ...info
     })
 }
 
@@ -20,7 +20,7 @@ module.exports.updateClassSchedule = async function (id, info) {
     return await ClassSchedule.updateOne({
         _id: id
     }, {
-        courses: info
+        ...info
     })
 }
 

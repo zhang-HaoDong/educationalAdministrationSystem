@@ -8,7 +8,9 @@ const { AskForLeave } = require("../models")
  * @returns 新增数据
  */
 module.exports.addLeaveRequestDao = async function (leaveRequestInfo) {
-    return await AskForLeave.create(leaveRequestInfo)
+    return await AskForLeave.create({
+        ...leaveRequestInfo
+    })
 }
 
 // 查询请销假信息 1：根据学生Id查 2：根据教师id查

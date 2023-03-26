@@ -2,9 +2,9 @@
 const { Course } = require('../models');
 
 // 新增课程
-module.exports.addCourse = async function (courseName) {
+module.exports.addCourse = async function (courseInfo) {
     return await Course.create({
-        courseName,
+        ...courseInfo,
     })
 }
 
@@ -21,11 +21,11 @@ module.exports.getAllCourse = async function () {
 }
 
 // 修改课程名称
-module.exports.updateCourse = async function (id, courseName) {
+module.exports.updateCourse = async function (id, courseInfo) {
     return await Course.updateOne({
         _id: id
     }, {
-        courseName
+        ...courseInfo
     })
 }
 

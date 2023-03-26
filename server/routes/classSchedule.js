@@ -4,12 +4,13 @@ const {
     addClassScheduleService,
     deleteClassScheduleService,
     getClassScheduleService,
-    updateClassScheduleService
+    updateClassScheduleService,
+    getClassScheduleByIdService
 } = require('../service/classSchedule')
 
 // 新增一条课表信息
 router.post('/', async (req, res, next) => {
-    const info = req.body.courses;
+    const info = req.body;
     const data = await addClassScheduleService(info);
     res.send(getResult(data))
 })
@@ -29,8 +30,14 @@ router.get('/', async (req, res, next) => {
 // 修改一条课表信息
 router.patch('/:id', async (req, res, next) => {
     const id = req.params.id;
-    const info = req.body.courses;
+    const info = req.body;
     const data = await updateClassScheduleService(id,info);
+    res.send(getResult(data))
+})
+
+// 根据课表id获取课表
+router.get('/:id', async (req,res,next) => {
+    const data = await getClassScheduleByIdService(req.params.id);
     res.send(getResult(data))
 })
 module.exports = router;

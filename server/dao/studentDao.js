@@ -42,3 +42,8 @@ module.exports.getStudentByTeacherId = async function ({ current, pageSize }) {
 module.exports.getStudentById = async function (id) {
     return await Student.findById(id)
 }
+
+// 判断学生是否存在
+module.exports.isExistStudent = async function (stuInfo) {
+    return await Student.findOne(stuInfo);
+}

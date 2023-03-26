@@ -7,7 +7,7 @@ const {
   getLeaveRequestByTecIdService,
   getAllLeaveRequestService,
   updateLeaveRequestService,
-  deleteLeaveRequestService
+  deleteLeaveRequestService,
 } = require('../service/askForLeave')
 
 // 新增请假信息

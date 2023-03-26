@@ -39,3 +39,8 @@ module.exports.getEvaluationByTeacherId = async function (tecId) {
         tecId: tecId
     })
 }
+
+// 根据id获取评教信息
+module.exports.getEvaluationById = async function(id){
+    return await Evaluation.findById(id)
+}

@@ -1,4 +1,12 @@
-const {addEvaluation,deleteEvaluationById,getAllEvaluation,getAllEvaluationByPage,getEvaluationByStudentId,getEvaluationByTeacherId} = require('../dao/evaluationDao')
+const {
+    addEvaluation,
+    deleteEvaluationById,
+    getAllEvaluation,
+    getAllEvaluationByPage,
+    getEvaluationByStudentId,
+    getEvaluationByTeacherId,
+    getEvaluationById
+} = require('../dao/evaluationDao')
 
 // 新增评教
 module.exports.addEvaluationService = async function(data){
@@ -28,4 +36,9 @@ module.exports.getEvaluationByStudentIdService = async function(stuId){
 // 根据教师id获取评教
 module.exports.getEvaluationByTeacherIdService = async function(teacherId){
     return await getEvaluationByTeacherId(teacherId)
+}
+
+// 根据id获取评级哦啊
+module.exports.getEvaluationByIdService = async function(id){
+    return await getEvaluationById(id)
 }
