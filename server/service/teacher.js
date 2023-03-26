@@ -42,5 +42,6 @@ module.exports.getTeacherByIdService = async function (id) {
 
 // 判断教师是否存在
 module.exports.isExistTeacherService =  async function (teacherInfo){
+    teacherInfo.loginPwd = md5(teacherInfo.loginPwd)
     return await isExistTeacher(teacherInfo)
 }

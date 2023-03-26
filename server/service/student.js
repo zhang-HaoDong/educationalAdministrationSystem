@@ -53,8 +53,3 @@ module.exports.getStudentByTeacherIdService = async function (teacherId) {
 module.exports.getStudentByIdService = async function (id) {
     return await getStudentById(id)
 }
-
-// 判断学生是否存在
-module.exports.isExistStudentService = async function (stuInfo) {
-    return await isExistStudent(stuInfo)
-}

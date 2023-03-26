@@ -9,7 +9,7 @@ const {
     updateTeacherService,
     isExistTeacherService
 } = require('../service/teacher');
-
+const {publishJWT,vertifyJWT} = require('../utils/jwt')
 // 注册
 router.post('/register', async (req,res) => {
     const resInfo = req.body;
@@ -18,7 +18,17 @@ router.post('/register', async (req,res) => {
 
 // 登陆
 router.post('/login',async (req,res) => {
-    res.send(getResult(await isExistTeacherService(req.body)))
+    const data = await isExistTeacherService(req.body)
+    if (data) {
+        publishJWT(res, data)
+    }
+    res.send(getResult(data))
+})
+
+// 验证登陆
+router.get('/whoami',async (req,res) => {
+    const data = vertifyJWT(req)
+    res.send(getResult(data))
 })
 
 // 获取所有的教师信息

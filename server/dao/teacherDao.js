@@ -40,5 +40,5 @@ module.exports.getTeacherById = async function (id) {
 
 // 查询教师是否存在
 module.exports.isExistTeacher = async function(teacherInfo){
-    return await Teacher.exists(teacherInfo)
+    return await Teacher.findOne(teacherInfo)
 }
