@@ -28,3 +28,8 @@ module.exports.updateClassSchedule = async function (id, info) {
 module.exports.getClassSchedule = async function () {
     return await ClassSchedule.find()
 }
+
+// 根据id查询课表
+module.exports.getClassScheduleById = async function(id){
+    return await ClassSchedule.findById(id)
+}

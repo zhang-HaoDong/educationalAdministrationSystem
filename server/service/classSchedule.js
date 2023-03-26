@@ -2,7 +2,8 @@ const {
     addClassSchedule,
     deleteClassSchedule,
     getClassSchedule,
-    updateClassSchedule
+    updateClassSchedule,
+    getClassScheduleById
 } = require('../dao/classScheduleDao')
 
 // 新增一条课表信息
@@ -25,4 +26,9 @@ module.exports.getClassScheduleService = async function(){
 // 修改课表信息
 module.exports.updateClassScheduleService = async function(id,info){
     return await updateClassSchedule(id,info)
+}
+
+// 根据id查询课表
+module.exports.getClassScheduleByIdService = async function(id){
+    return await getClassScheduleById(id)
 }

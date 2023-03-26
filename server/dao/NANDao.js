@@ -1,30 +1,34 @@
-// notice and news
-const {NAN} = require('../models')
+const { NAN } = require('../models')
 
-// 新增一个新闻与通知
-export function addNAN(NANInfo){
-    return NAN.create({
-        ...NANInfo
+// 添加一条新闻
+module.exports.addNAN = async function (data) {
+    return await NAN.create({
+        ...data
     })
 }
 
-// 删除一个新闻与通知
-export function deleteNAN(id){
-    return NAN.deleteOne({
-        _id:id
+// 删除一条新闻
+module.exports.deleteNANById = async function (id) {
+    return await NAN.deleteOne({
+        _id: id
     })
 }
 
-// 修改一个新闻与通知
-export function updateNAN(id,NANInfo){
-    return NAN.updateOne({
-        _id:id
-    },{
-        ...NANInfo
+// 修改一条新闻
+module.exports.updateNAN = async function (id, data) {
+    return await NAN.updateOne({
+        _id: id
+    }, {
+        ...data
     })
 }
 
-// 查询所有新闻与通知
-export function getAllNAN(){
-    return NAN.find();
+// 获取所有的新闻
+module.exports.getAllNAN = async function () {
+    return await NAN.find()
+}
+
+// 分页获取所有的新闻
+module.exports.getAllNANByPage = async function ({ current, pageSize }) {
+    return await NAN.find().limit(pageSize).skip((current - 1) * pageSize)
 }

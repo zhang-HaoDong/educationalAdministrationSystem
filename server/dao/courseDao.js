@@ -29,3 +29,7 @@ module.exports.updateCourse = async function (id, courseName) {
     })
 }
 
+// 根据id查询课程
+module.exports.getCourseById = async function (id) {
+    return Course.findById(id)
+}

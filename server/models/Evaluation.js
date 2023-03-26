@@ -12,7 +12,7 @@ const evaluationSchema = new mongoose.Schema({
     },
     evaluation: {
         type: [{
-            question: String,
+            questionId: String,
             score: Number
         }]
     }

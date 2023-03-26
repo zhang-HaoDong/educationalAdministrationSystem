@@ -1,35 +1,41 @@
-// 引入评教模型
-const {Evaluation}  = require('../models');
+const { Evaluation } = require('../models')
 
-// 获取全部的评教数据
-export function getAllEvaluation(){
-    return Evaluation.find();
+// 添加一组评教
+module.exports.addEvaluation = async function (data) {
+    return await Evaluation.create({
+        stuId: data.stuId,
+        tecId: data.tecId,
+        evaluation: data.evaluation
+    })
 }
 
-// 根据教师id获取评教数据
-export function getEvaluationByTeacherId(tID){
+// 获取全部评教
+module.exports.getAllEvaluation = async function () {
+    return await Evaluation.find()
+}
+
+//分页获取评教
+module.exports.getAllEvaluationByPage = async function ({ current, pageSize }) {
+    return await Evaluation.find().limit(pageSize).skip((current - 1) * pageSize)
+}
+
+// 删除一组评教
+module.exports.deleteEvaluationById = async function (id) {
+    return await Evaluation.deleteOne({
+        _id: id
+    })
+}
+
+// 根据学生id获取评教
+module.exports.getEvaluationByStudentId = async function (stuId) {
     return Evaluation.find({
-        tecId:tID
+        stuId: stuId
     })
 }
 
-// 根据学生id获取评教数据
-export function getEvaluationByStudentId(sID){
-    return Evaluation.find({
-        stuId:sID
-    })
-}
-
-// 删除id获取删除评教数据
-export function deleteEvaluationById(id){
-    return Evaluation.deleteOne({
-        _id:id
-    })
-}
-
-// 添加一条评教数据
-export function addEvaluation(evaluationInfo){
-    return Evaluation.create({
-        ...evaluationInfo
+// 根据教师id获取评教
+module.exports.getEvaluationByTeacherId = async function (tecId) {
+    return await Evaluation.find({
+        tecId: tecId
     })
 }

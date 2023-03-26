@@ -1,4 +1,4 @@
-const { addCourse, deleteCourse, getAllCourse, updateCourse } = require('../dao/courseDao');
+const { addCourse, deleteCourse, getAllCourse, updateCourse ,getCourseById} = require('../dao/courseDao');
 
 //新增课程
 module.exports.addCourseService = async function (courseName) {
@@ -18,4 +18,9 @@ module, exports.getCourseService = async function () {
 // 修改课程信息
 module.exports.updateCourseService = async function (id, courseName) {
     return await updateCourse(id, courseName)
+}
+
+// 根据id获取课程
+module.exports.getCourseByIdService = async function (id){
+    return await getCourseById(id)
 }
