@@ -1,4 +1,4 @@
-const { addNAN, deleteNANById, getAllNAN, getAllNANByPage, updateNAN } = require('../dao/NANDao');
+const { addNAN, deleteNANById, getAllNAN, getAllNANByPage, updateNAN,getNANById } = require('../dao/NANDao');
 
 // 新增新闻
 module.exports.addNANService = async function (data) {
@@ -21,6 +21,11 @@ module.exports.getAllNANService = async function(){
 }
 
 // 分页获取新闻
-module.exports.getAllNANByPageByPage = async function(pageInfo){
+module.exports.getAllNANByPageByPageService = async function(pageInfo){
     return await getAllNANByPage(pageInfo)
+}
+
+// 根据id获取新闻
+module.exports.getNANByIdService = async function(id){
+    return await getNANById(id)
 }

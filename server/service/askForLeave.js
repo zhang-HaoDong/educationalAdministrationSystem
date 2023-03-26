@@ -4,7 +4,7 @@ const {
     getLeaveRequestByTecIdDao,
     getAllLeaveRequestDao,
     updateLeaveRequestDao,
-    deleteLeaveRequestDao
+    deleteLeaveRequestDao,
 } = require('../dao/askForLeaveDao');
 
 // 添加一个请销假信息

@@ -1,8 +1,12 @@
-const { addCourse, deleteCourse, getAllCourse, updateCourse ,getCourseById} = require('../dao/courseDao');
+const { addCourse,
+    deleteCourse,
+    getAllCourse,
+    updateCourse,
+    getCourseById } = require('../dao/courseDao');
 
 //新增课程
-module.exports.addCourseService = async function (courseName) {
-    return await addCourse(courseName);
+module.exports.addCourseService = async function (courseInfo) {
+    return await addCourse(courseInfo);
 }
 
 // 删除课程
@@ -16,11 +20,11 @@ module, exports.getCourseService = async function () {
 }
 
 // 修改课程信息
-module.exports.updateCourseService = async function (id, courseName) {
-    return await updateCourse(id, courseName)
+module.exports.updateCourseService = async function (id, courseInfo) {
+    return await updateCourse(id, courseInfo)
 }
 
 // 根据id获取课程
-module.exports.getCourseByIdService = async function (id){
+module.exports.getCourseByIdService = async function (id) {
     return await getCourseById(id)
 }

@@ -3,7 +3,7 @@ const {
     deleteClassSchedule,
     getClassSchedule,
     updateClassSchedule,
-    getClassScheduleById
+    getClassScheduleById,
 } = require('../dao/classScheduleDao')
 
 // 新增一条课表信息

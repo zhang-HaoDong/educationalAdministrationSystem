@@ -1,8 +1,14 @@
-const { addClass, deleteClass, getAllClass, updateClass, getClassById } = require('../dao/classDao');
+const {
+    addClass,
+    deleteClass,
+    getAllClass,
+    updateClass,
+    getClassById,
+} = require('../dao/classDao');
 
 //新增班级
-module.exports.addClassService = async function (className) {
-    return await addClass(className);
+module.exports.addClassService = async function (classInfo) {
+    return await addClass(classInfo);
 }
 
 // 删除班级
@@ -16,11 +22,11 @@ module, exports.getClassService = async function () {
 }
 
 // 修改班级信息
-module.exports.updateClassService = async function (id, className) {
-    return await updateClass(id, className)
+module.exports.updateClassService = async function (id, classInfo) {
+    return await updateClass(id, classInfo)
 }
 
 // 根据id查询班级
-module.exports.getClassByIdService = async function (id){
+module.exports.getClassByIdService = async function (id) {
     return await getClassById(id)
 }

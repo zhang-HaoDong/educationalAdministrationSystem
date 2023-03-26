@@ -5,12 +5,13 @@ const {
     addClassService,
     deleteClassService,
     getClassService,
-    updateClassService
+    updateClassService,
+    getClassByIdService,
 } = require('../service/class')
 
 // 新增一个班级
 router.post('/', async (req, res, next) => {
-    const data = await addClassService(req.body.className);
+    const data = await addClassService(req.body);
     res.send(getResult(data))
 })
 
@@ -30,8 +31,14 @@ router.get('/', async (req, res, next) => {
 router.patch('/:id', async (req, res, next) => {
     const id = req.params.id;
     const classInfo = req.body;
-    const data = await updateClassService(id, classInfo.className);
+    const data = await updateClassService(id, classInfo);
     res.send(getResult(data));
+})
+
+// 根据id获取班级信息
+router.get('/:id',async (req,res,next) => {
+    const data = await getClassByIdService(req.params.id);
+    res.send(getResult(data))
 })
 
 

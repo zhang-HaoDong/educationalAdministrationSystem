@@ -2,9 +2,9 @@
 const { Class } = require('../models');
 
 // 新增班级
-module.exports.addClass = async function (className) {
+module.exports.addClass = async function (classInfo) {
     return await Class.create({
-        className,
+        ...classInfo
     })
 }
 
@@ -21,15 +21,15 @@ module.exports.getAllClass = async function () {
 }
 
 // 修改班级名称
-module.exports.updateClass = async function (id, className) {
+module.exports.updateClass = async function (id, classInfo) {
     return await Class.updateOne({
         _id: id
     }, {
-        className
+        ...classInfo
     })
 }
 
 // 根据id查询班级
-module.exports.getClassById = async function(id){
+module.exports.getClassById = async function (id) {
     return await Class.findById(id)
 }
