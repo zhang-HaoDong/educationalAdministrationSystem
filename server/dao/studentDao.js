@@ -45,5 +45,5 @@ module.exports.getStudentById = async function (id) {
 
 // 判断学生是否存在
 module.exports.isExistStudent = async function (stuInfo) {
-    return await Student.exists(stuInfo);
+    return await Student.findOne(stuInfo);
 }

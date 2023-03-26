@@ -11,6 +11,7 @@ const {
     isExistStudentService
 } = require('../service/student');
 const md5 = require('md5');
+const {publishJWT,vertifyJWT} = require('../utils/jwt')
 
 // 注册
 router.post('/register', async (req,res) => {
@@ -20,7 +21,11 @@ router.post('/register', async (req,res) => {
 
 // 登陆
 router.post('/login',async (req,res) => {
-    res.send(getResult(await isExistStudentService(req.body)))
+    const data = await isExistStudentService(req.body);
+    if(!data.data){
+        publishJWT(res,data.data)
+    }
+    res.send(getResult())
 })
 
 // 获取所有的学生信息
@@ -57,6 +62,22 @@ router.patch('/:id',async (req,res) => {
 router.get('/',async (req,res) => {
     const data = await getStudentByPageService(req.query)
     res.send(getResult(data))
+})
+
+// whoami
+router.get('/whoami', async (req,res) => {
+    const token = req.headers.authorization;
+    if(token){
+        const info = vertifyJWT(req);
+        if(info !== null){
+            res.send(getResult(await getStudentByIdService(info._id)))
+        }
+    }
+    res.send({
+        code:1,
+        message:'登陆失效',
+        data:null
+    })
 })
 
 module.exports = router;
