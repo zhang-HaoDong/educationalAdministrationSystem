@@ -20,15 +20,79 @@ export default defineConfig({
       component: './Home',
     },
     {
-      name: '权限演示',
-      path: '/access',
-      component: './Access',
+      name: '教师',
+      path: '/teacher',
+      routes: [
+        {
+          name: '教师列表',
+          path: 'list',
+          component: './Teacher'
+        },
+        {
+          name: '添加教师',
+          path: 'addteacher',
+          component: './Teacher/AddTeacher'
+        }
+      ]
     },
     {
-        name: ' CRUD 示例',
-        path: '/table',
-        component: './Table',
+      name: '班级',
+      path: '/class',
+      component: './Class'
     },
+    {
+      name: '成绩',
+      path: '/scoreentry',
+      routes: [
+        {
+          name: '成绩列表',
+          path: 'list',
+          component: './ScoreEntry'
+        },
+        {
+          name: '成绩录入',
+          path: 'entry',
+          component: './ScoreEntry/Entry'
+        }
+      ]
+    },
+    {
+      name: '评教',
+      path: '/evaluation',
+      routes: [
+        {
+          name: '评教列表',
+          path: 'list',
+          component: './Evaluation'
+        },
+        {
+          name: '添加评教问题',
+          path: 'add_evaluation',
+          component: './Evaluation/AddEvaluation'
+        }
+      ]
+    },
+    {
+      name: '请销假',
+      path: '/askforleave',
+      component: './AskForLeave'
+    },
+    {
+      name: '新闻',
+      path: '/news',
+      routes: [
+        {
+          name: '新闻列表',
+          path: 'list',
+          component: './News'
+        },
+        {
+          name: '新增新闻',
+          path: 'add_news',
+          component: './News/AddNews'
+        }
+      ]
+    }
   ],
   npmClient: 'npm',
 });

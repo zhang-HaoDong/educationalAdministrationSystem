@@ -46,9 +46,9 @@ const teacherSchema = new mongoose.Schema({
         required: true
     },
     classId: {
-        type: String,
+        type: [String],
         required: true
     },
 })
 
-module.exports = mongoose.model('Teacher',teacherSchema)
+module.exports = mongoose.model('Teacher', teacherSchema)
