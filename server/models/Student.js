@@ -64,7 +64,9 @@ const studentSchema = new mongoose.Schema({
             sbjId: String,
             sbjScore: Number
         }]
-    }
+    },
+    // 专业id
+    majorId: String
 });
 
 // 通过mongoose定义模型并导出 第一个参数代表数据库中集合的名称 第二个代表结构

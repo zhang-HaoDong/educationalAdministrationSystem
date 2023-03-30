@@ -49,6 +49,10 @@ const teacherSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
+    permission: {
+        type: String,
+        required: true
+    }
 })
 
 module.exports = mongoose.model('Teacher', teacherSchema)
