@@ -6,19 +6,24 @@ const {
     getStudentByPage,
     getStudentByTeacherId,
     updateStudent,
-    isExistStudent
+    isExistStudent,
+    isExist
 } = require('../dao/studentDao')
 const md5 = require('md5')
 // 新增(注册)一个学生
 module.exports.addStudentService = async function (data) {
-    data.loginPwd = md5(data.loginPwd)
+    if (data.loginPwd) {
+        data.loginPwd = md5(data.loginPwd)
+    }
     return await addStudent(data)
 }
 
 // 登陆
 module.exports.stuLoginService = async function (loginInfo) {
     // 首先对密码进行加密
-    loginInfo.loginPwd = md5(loginInfo.loginPwd);
+    if (loginInfo.loginPwd) {
+        loginInfo.loginPwd = md5(loginInfo.loginPwd);
+    }
     // 判断学生是否存在
     return await isExistStudent(loginInfo)
 }
@@ -30,7 +35,9 @@ module.exports.deleteStudentByIdService = async function (id) {
 
 // 修改一个学生
 module.exports.updateStudentService = async function (id, data) {
-    data.loginPwd = md5(data.loginPwd)
+    if (data.loginPwd) {
+        data.loginPwd = md5(data.loginPwd)
+    }
     return await updateStudent(id, data)
 }
 
@@ -52,4 +59,9 @@ module.exports.getStudentByTeacherIdService = async function (teacherId) {
 // 根据学生id获取学生信息
 module.exports.getStudentByIdService = async function (id) {
     return await getStudentById(id)
+}
+
+// 根据字段判断学生是否存在
+module.exports.isExistService = async function (stuInfo) {
+    return await isExist(stuInfo);
 }

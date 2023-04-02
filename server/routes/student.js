@@ -8,7 +8,8 @@ const {
     getStudentByPageService,
     getStudentByTeacherIdService,
     updateStudentService,
-    stuLoginService
+    stuLoginService,
+    isExistService
 } = require('../service/student');
 const { publishJWT, vertifyJWT } = require('../utils/jwt')
 
@@ -72,6 +73,13 @@ router.patch('/:id', async (req, res) => {
 router.get('/', async (req, res) => {
     const data = await getStudentByPageService(req.query)
     res.send(getResult(data))
+})
+
+// 根据字段判断学生是否存在
+router.post('/isexist', async (req, res) => {
+    const stuInfo = req.body;
+    const result = await isExistService(stuInfo);
+    res.send(getResult(result))
 })
 
 

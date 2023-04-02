@@ -14,3 +14,19 @@ export const layout = () => {
     },
   };
 };
+
+export const request = {
+  timeout: '3000',
+  requestInterceptors: [
+    // 直接写一个 function，作为拦截器
+    (url, options) => {
+      // do something
+      const token = localStorage.getItem('token');
+      if (token) {
+        // 如果有token就判断token是否有效
+        options.headers['Authorization'] = 'Bearer ' + token;
+      }
+      return { url, options }
+    },
+  ]
+}

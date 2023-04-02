@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage,
   limits: {
-    fileSize: 150 * 1024,
+    fileSize: 150 * 1024 * 1024,
   },
   fileFilter(req, file, cb) {
     //验证文件后缀名
@@ -33,7 +33,7 @@ const upload = multer({
   },
 });
 
-router.post("/", upload.single("img"), (req, res) => {
+router.post("/", upload.single("file"), (req, res) => {
   const url = `/upload/${req.file.filename}`;
   res.send({
     code: 0,

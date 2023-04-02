@@ -36,6 +36,22 @@ export default defineConfig({
       ]
     },
     {
+      name: '学生',
+      path: '/student',
+      routes: [
+        {
+          name: '学生列表',
+          path: 'list',
+          component: './Student'
+        },
+        {
+          name: '添加学生',
+          path: 'addstudent',
+          component: './Student/AddStudent'
+        }
+      ]
+    },
+    {
       name: '班级',
       path: '/class',
       component: './Class'
@@ -95,4 +111,18 @@ export default defineConfig({
     }
   ],
   npmClient: 'npm',
+  proxy: {
+    '/api': {
+      target: 'http://127.0.0.1:7001',
+      changeOrigin: true,
+    },
+    '/static': {
+      target: 'http://127.0.0.1:7001',
+      changeOrigin: true,
+    },
+    '/upload': {
+      target: 'http://127.0.0.1:7001',
+      changeOrigin: true,
+    }
+  }
 });
