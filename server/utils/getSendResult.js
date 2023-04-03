@@ -1,5 +1,6 @@
 // 返回发生的错误结果
 exports.getError = function (err = 'server error', errCode = 500) {
+    console.log(err);
     return {
         code: errCode,
         msg: err instanceof Error ? err.message : err,

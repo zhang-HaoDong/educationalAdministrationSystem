@@ -18,7 +18,6 @@ const teacherSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        minLength: 6,
         maxLength: 12
     },
     tel: {

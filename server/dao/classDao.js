@@ -33,3 +33,10 @@ module.exports.updateClass = async function (id, classInfo) {
 module.exports.getClassById = async function (id) {
     return await Class.findById(id)
 }
+
+// 根据专业id查找班级
+module.exports.getClassByMajorId = async function (marjorId) {
+    return await Class.find({
+        majorId: marjorId
+    })
+}

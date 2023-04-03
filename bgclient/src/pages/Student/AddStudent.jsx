@@ -8,9 +8,6 @@ export default function AddStudent() {
     const [userInfo, setUserInfo] = useState({})
     const navigate = useNavigate()
     async function onsubmit() {
-        userInfo.counselorId = "642914369bf865655b97ea58"
-        userInfo.classId = '1234'
-        userInfo.enabled = false
         await addStudent(userInfo);
         await navigate('/student/list')
     }

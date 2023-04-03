@@ -39,7 +39,8 @@ const Student = () => {
         {
             title: '性别',
             dataIndex: 'sex',
-            align: 'center'
+            align: 'center',
+            render: text => text === 'male' ? '男' : '女'
         },
         {
             title: '联系方式',

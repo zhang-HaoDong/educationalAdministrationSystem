@@ -7,6 +7,7 @@ const {
     getClassService,
     updateClassService,
     getClassByIdService,
+    getClassByMajorIdService
 } = require('../service/class')
 
 // 新增一个班级
@@ -36,8 +37,14 @@ router.patch('/:id', async (req, res, next) => {
 })
 
 // 根据id获取班级信息
-router.get('/:id',async (req,res,next) => {
+router.get('/:id', async (req, res, next) => {
     const data = await getClassByIdService(req.params.id);
+    res.send(getResult(data))
+})
+
+// 根据marjorid获取班级信息
+router.get('/major/:id', async (req, res, next) => {
+    const data = await getClassByMajorIdService(req.params.id);
     res.send(getResult(data))
 })
 

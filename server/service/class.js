@@ -4,6 +4,7 @@ const {
     getAllClass,
     updateClass,
     getClassById,
+    getClassByMajorId,
 } = require('../dao/classDao');
 
 //新增班级
@@ -29,4 +30,9 @@ module.exports.updateClassService = async function (id, classInfo) {
 // 根据id查询班级
 module.exports.getClassByIdService = async function (id) {
     return await getClassById(id)
+}
+
+// 根据专业id查询班级
+module.exports.getClassByMajorIdService = async function (majorId) {
+    return await getClassByMajorId(majorId)
 }

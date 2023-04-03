@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const majorSchema = new mongoose.Schema({
-    marjorName: {
+    majorName: {
         type: String,
         required: true
     }

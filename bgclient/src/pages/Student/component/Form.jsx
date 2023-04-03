@@ -1,21 +1,51 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useNavigate } from '@umijs/max'
-import { Form, Input, Button, Space, Image, Upload } from 'antd'
+import { Form, Input, Button, Space, Image, Upload, Radio, Select } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { isExist } from '../../../services/student'
+import { getAllTeacher } from '../../../services/teacher'
+import { getAllMajor } from '../../../services/major'
+import { getClassByMajorId } from '../../../services/class'
 export default function FormControll({ type, onsubmit, userInfo, updateUserinfo }) {
     const navigate = useNavigate()
+    const formRef = useRef();
+
+    const [teachersInfo, setTeachersInfo] = useState([])
+    const [majorsInfo, setMajorsInfo] = useState([])
+    const [classInfo, setClassInfo] = useState([])
+
+    useEffect(() => {
+        (async () => {
+            const teachers = await getAllTeacher();
+            setTeachersInfo(teachers.data);
+        })();
+        (async () => {
+            const majors = await getAllMajor();
+            setMajorsInfo(majors.data);
+        })()
+    }, [])
+
+    useEffect(() => {
+        formRef.current.setFieldsValue(userInfo)
+    }, [userInfo])
+
+    useEffect(() => {
+        (async () => {
+            if (userInfo.majorId) {
+                const { data } = await getClassByMajorId(userInfo.majorId)
+                if (data) {
+                    setClassInfo(data)
+                }
+            }
+        })()
+    }, [userInfo.majorId])
+
     // 更新用户数据
     function updateInfo(val, key) {
         const newUserInfo = { ...userInfo };
         newUserInfo[key] = val;
         updateUserinfo(newUserInfo)
     }
-    // 获取表单实例
-    const formRef = useRef();
-    useEffect(() => {
-        formRef.current.setFieldsValue(userInfo)
-    }, [userInfo])
     //表单提交
     function onFinish() {
         onsubmit()
@@ -38,6 +68,19 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
     function cancelHandle() {
         navigate('/student/list')
     }
+
+    let teacherOptions = teachersInfo.map(item => ({
+        value: item._id,
+        label: item.name
+    }))
+    let majorOptions = majorsInfo.map(item => ({
+        value: item._id,
+        label: item.majorName
+    }))
+    let classOptions = classInfo.map(item => ({
+        value: item._id,
+        label: item.className
+    }))
     return (
         <>
             <Form
@@ -102,7 +145,7 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
 
                 {/* 昵称 */}
                 <Form.Item
-                    label='用户昵称'
+                    label='姓名'
                     name='name'
                     rules={type === 'edit' ? [{
                         required: true,
@@ -112,10 +155,23 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
                     <Input
                         placeholder='请输入用户名称'
                         value={userInfo.nickname}
-                        onChange={e => updateInfo(e.target.value, 'nickname')}
+                        onChange={e => updateInfo(e.target.value, 'name')}
                     />
 
                 </Form.Item>
+
+                {/* 性别 */}
+                <Form.Item
+                    label='性别'
+                    name='sex'
+                >
+                    <Radio.Group onChange={e => updateInfo(e.target.value, 'sex')} value={userInfo.sex}>
+                        <Radio value={'male'}>男</Radio>
+                        <Radio value={'female'}>女</Radio>
+                    </Radio.Group>
+
+                </Form.Item>
+
 
                 {/* 联系方式 */}
                 <Form.Item
@@ -129,6 +185,58 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
                     />
 
                 </Form.Item>
+
+                {/* 辅导员 */}
+                <Form.Item
+                    label='辅导员'
+                    name='counselorId'
+                >
+                    <Select
+                        // defaultValue="lucy" 做默认选择当前用户
+                        placeholder="请选择的教师"
+                        style={{
+                            width: 120,
+                        }}
+                        onChange={e => updateInfo(e, 'counselorId')}
+                        options={teacherOptions}
+                    />
+
+                </Form.Item>
+
+                {/* 专业 */}
+                <Form.Item
+                    label='专业'
+                    name='majorId'
+                >
+                    <Select
+                        // defaultValue="lucy" 做默认选择当前用户
+                        placeholder="请选择专业"
+                        style={{
+                            width: 240,
+                        }}
+                        onChange={e => updateInfo(e, 'majorId')}
+                        options={majorOptions}
+                    />
+
+                </Form.Item>
+
+                {/* 班级 */}
+                <Form.Item
+                    label='班级'
+                    name='classId'
+                >
+                    <Select
+                        // defaultValue="lucy" 做默认选择当前用户
+                        placeholder="请选择班级"
+                        style={{
+                            width: 240,
+                        }}
+                        onChange={e => updateInfo(e, 'classId')}
+                        options={classOptions}
+                    />
+
+                </Form.Item>
+
 
                 {/* 当前用户头像 */}
                 {userInfo.avatar ?

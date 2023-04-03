@@ -1,4 +1,4 @@
-exports.Student =  require('./Student');
+exports.Student = require('./Student');
 exports.ClassSchedule = require('./ClassSchedule')
 exports.Course = require('./Course')
 exports.Evaluation = require('./Evaluation')
@@ -7,3 +7,4 @@ exports.Class = require('./Class');
 exports.NAN = require('./NAN');
 exports.EvalgituationQuestion = require('./EvaluationQuestion');
 exports.Teacher = require('./Teacher')
+exports.Major = require('./Major')

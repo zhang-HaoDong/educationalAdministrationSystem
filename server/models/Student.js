@@ -19,7 +19,6 @@ const studentSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        minLength: 6,
         maxLength: 12
     },
     sex: String,
@@ -52,8 +51,8 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // 课表Id
-    classScheduleId: String,
+    // 专业id
+    majorId: String,
     // 班级Id
     classId: {
         type: String,
@@ -65,8 +64,6 @@ const studentSchema = new mongoose.Schema({
             sbjScore: Number
         }]
     },
-    // 专业id
-    majorId: String
 });
 
 // 通过mongoose定义模型并导出 第一个参数代表数据库中集合的名称 第二个代表结构
