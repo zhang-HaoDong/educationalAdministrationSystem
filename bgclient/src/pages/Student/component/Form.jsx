@@ -117,6 +117,19 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
 
                 </Form.Item>
 
+                {/* 联系方式 */}
+                <Form.Item
+                    label='联系方式'
+                    name='tel'
+                >
+                    <Input
+                        placeholder='请留下您的联系方式'
+                        value={userInfo.tel}
+                        onChange={e => updateInfo(e.target.value, 'tel')}
+                    />
+
+                </Form.Item>
+
                 {/* 当前用户头像 */}
                 {userInfo.avatar ?
                     <Form.Item
