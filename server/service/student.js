@@ -9,6 +9,12 @@ const {
     isExistStudent,
     isExist
 } = require('../dao/studentDao')
+const {
+    getClassById
+} = require('../dao/classDao')
+const {
+    getMajorById
+} = require('../dao/majorDao')
 const md5 = require('md5')
 // 新增(注册)一个学生
 module.exports.addStudentService = async function (data) {
@@ -48,7 +54,17 @@ module.exports.getAllStudentService = async function () {
 
 // 分页获取所有学生
 module.exports.getStudentByPageService = async function (pageInfo) {
-    return await getStudentByPage(pageInfo)
+    const res = await getStudentByPage(pageInfo);
+    const data = res.map(async (item) => {
+        const { className } = await getClassById(item.classId);
+        const { majorName } = await getMajorById(item.majorId)
+        return {
+            ...item._doc,
+            className,
+            majorName
+        }
+    })
+    return await Promise.all(data)
 }
 
 // 根据教师id获取学生

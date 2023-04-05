@@ -3,7 +3,6 @@ const { getResult, getError } = require('../utils/getSendResult');
 const {
     addStudentService,
     deleteStudentByIdService,
-    getAllStudentService,
     getStudentByIdService,
     getStudentByPageService,
     getStudentByTeacherIdService,
@@ -41,10 +40,10 @@ router.get('/whoami', async (req, res) => {
 })
 
 // 获取所有的学生信息
-router.get('/', async (req, res, next) => {
-    const data = await getAllStudentService();
-    res.send(getResult(data))
-})
+// router.get('/', async (req, res, next) => {
+//     const data = await getAllStudentService();
+//     res.send(getResult(data))
+// })
 
 
 // 删除学生

@@ -38,3 +38,10 @@ export async function addStudent(stuInfo) {
         data: stuInfo
     })
 }
+
+// 根据id获取学生信息
+export async function getStudentById(id) {
+    return request(`/api/student/${id}`, {
+        method: 'GET'
+    })
+}

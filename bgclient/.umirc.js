@@ -32,6 +32,12 @@ export default defineConfig({
           name: '添加教师',
           path: 'addteacher',
           component: './Teacher/AddTeacher'
+        },
+        {
+          name: '修改教师',
+          path: 'editteacher/:id',
+          component: './Teacher/EditTeacher',
+          hideInMenu: true
         }
       ]
     },
@@ -48,6 +54,12 @@ export default defineConfig({
           name: '添加学生',
           path: 'addstudent',
           component: './Student/AddStudent'
+        },
+        {
+          name: '编辑学生',
+          path: 'editstudent/:id',
+          component: './Student/EditStudent',
+          hideInMenu: true
         }
       ]
     },

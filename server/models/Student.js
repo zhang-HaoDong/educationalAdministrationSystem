@@ -19,9 +19,13 @@ const studentSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        maxLength: 12
+        maxLength: 12,
+        required:true
     },
-    sex: String,
+    sex: {
+        type: String,
+        trim: true,
+    },
     tel: {
         type: String,
         trim: true,
@@ -52,7 +56,10 @@ const studentSchema = new mongoose.Schema({
         required: true
     },
     // 专业id
-    majorId: String,
+    majorId: {
+        type: String,
+        required: true
+    },
     // 班级Id
     classId: {
         type: String,

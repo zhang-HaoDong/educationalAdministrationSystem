@@ -8,8 +8,12 @@ export default function AddStudent() {
     const [userInfo, setUserInfo] = useState({})
     const navigate = useNavigate()
     async function onsubmit() {
-        await addStudent(userInfo);
-        await navigate('/student/list')
+        try {
+            await addStudent(userInfo);
+            navigate('/student/list')
+        } catch (error) {
+            message.error(error.response.data.msg)
+        }
     }
     return (
         <>

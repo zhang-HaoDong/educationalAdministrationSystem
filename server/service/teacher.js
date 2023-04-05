@@ -5,7 +5,8 @@ const {
     getTeacherById,
     getTeacherByPage,
     updateTeacher,
-    isExistTeacher
+    isExistTeacher,
+    isExist
 } = require('../dao/teacherDao')
 const md5 = require('md5')
 // 新增一个教师
@@ -40,8 +41,13 @@ module.exports.getTeacherByIdService = async function (id) {
     return await getTeacherById(id)
 }
 
-// 判断教师是否存在
-module.exports.isExistTeacherService =  async function (teacherInfo){
+// 登陆
+module.exports.isExistTeacherService = async function (teacherInfo) {
     teacherInfo.loginPwd = md5(teacherInfo.loginPwd)
     return await isExistTeacher(teacherInfo)
+}
+
+// 验证老师是否存在
+module.exports.isExistService = async function (teacherInfo) {
+    return await isExist(teacherInfo)
 }

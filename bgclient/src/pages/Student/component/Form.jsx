@@ -147,10 +147,10 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
                 <Form.Item
                     label='姓名'
                     name='name'
-                    rules={type === 'edit' ? [{
+                    rules={[{
                         required: true,
                         message: '请输入用户昵称'
-                    }] : []}
+                    }]}
                 >
                     <Input
                         placeholder='请输入用户名称'
@@ -164,6 +164,10 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
                 <Form.Item
                     label='性别'
                     name='sex'
+                    rules={[{
+                        required: true,
+                        message: '请选择性别'
+                    }]}
                 >
                     <Radio.Group onChange={e => updateInfo(e.target.value, 'sex')} value={userInfo.sex}>
                         <Radio value={'male'}>男</Radio>
@@ -190,6 +194,10 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
                 <Form.Item
                     label='辅导员'
                     name='counselorId'
+                    rules={[{
+                        required: true,
+                        message: '请选择辅导员'
+                    }]}
                 >
                     <Select
                         // defaultValue="lucy" 做默认选择当前用户
@@ -207,6 +215,10 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
                 <Form.Item
                     label='专业'
                     name='majorId'
+                    rules={[{
+                        required: true,
+                        message: '请选择专业'
+                    }]}
                 >
                     <Select
                         // defaultValue="lucy" 做默认选择当前用户
@@ -224,6 +236,10 @@ export default function FormControll({ type, onsubmit, userInfo, updateUserinfo 
                 <Form.Item
                     label='班级'
                     name='classId'
+                    rules={[{
+                        required: true,
+                        message: '请选择班级'
+                    }]}
                 >
                     <Select
                         // defaultValue="lucy" 做默认选择当前用户
