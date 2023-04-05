@@ -45,7 +45,5 @@ module.exports.isExistTeacher = async function (teacherInfo) {
 
 // 验证老师是否存在
 module.exports.isExist = async function (teacherInfo) {
-    console.log(teacherInfo);
-    console.log(await Teacher.exists(teacherInfo));
     return await Teacher.exists(teacherInfo)
 }

@@ -35,8 +35,15 @@ module.exports.getClassById = async function (id) {
 }
 
 // 根据专业id查找班级
-module.exports.getClassByMajorId = async function (marjorId) {
+module.exports.getClassByMajorId = async function (majorId) {
     return await Class.find({
-        majorId: marjorId
+        majorId,
+    })
+}
+
+// 根据辅导员id查询班级
+module.exports.getClassByCounselorIdId = async function (counselorId) {
+    return await Class.find({
+        counselorId
     })
 }

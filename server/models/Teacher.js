@@ -44,10 +44,6 @@ const teacherSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    classId: {
-        type: [String],
-        // required: true
-    },
     permission: {
         type: String,
         required: true

@@ -6,7 +6,8 @@ const ClassSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    majorId: String
+    majorId: String,
+    counselorId: String
 })
 
 module.exports = mongoose.model('Class', ClassSchema)
