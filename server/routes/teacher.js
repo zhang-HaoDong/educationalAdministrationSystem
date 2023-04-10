@@ -14,7 +14,6 @@ const { publishJWT, vertifyJWT } = require('../utils/jwt')
 // 注册
 router.post('/register', async (req, res) => {
     const resInfo = req.body;
-    resInfo.enabled = true;
     res.send(getResult(await addTeacherService(resInfo)))
 })
 
@@ -24,7 +23,14 @@ router.post('/login', async (req, res) => {
     if (data) {
         publishJWT(res, data)
     }
-    res.send(getResult(data))
+    if (!data) {
+        res.send(getResult(data))
+        return
+    }
+    res.send(getResult({
+        ...data._doc,
+        token: res.getHeader('authorization')
+    }))
 })
 
 // 验证登陆

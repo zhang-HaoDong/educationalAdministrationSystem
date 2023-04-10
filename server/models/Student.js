@@ -20,7 +20,7 @@ const studentSchema = new mongoose.Schema({
         type: String,
         trim: true,
         maxLength: 12,
-        required:true
+        required: true
     },
     sex: {
         type: String,
@@ -48,7 +48,8 @@ const studentSchema = new mongoose.Schema({
     intro: String,
     enabled: {
         type: Boolean,
-        required: true
+        required: true,
+        default: true
     },
     // 辅导员Id
     counselorId: {

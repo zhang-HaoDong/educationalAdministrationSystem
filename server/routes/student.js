@@ -15,7 +15,6 @@ const { publishJWT, vertifyJWT } = require('../utils/jwt')
 // 注册
 router.post('/register', async (req, res) => {
     const resInfo = req.body;
-    resInfo.enabled = true;
     res.send(getResult(await addStudentService(resInfo)))
 })
 

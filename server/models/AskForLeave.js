@@ -41,16 +41,16 @@ const askForLeaveSchema = new mongoose.Schema({
         required: true
     },
     //请假事由
-    reason:{
+    reason: {
         type: String,
         required: true
     },
-    // 附件
-    attachment:String,
+    // 附件 图片的上传
+    attachment: String,
     // 是否批准
-    isPass:{
-        type:Boolean,
-        default:false
+    isPass: {
+        type: String,
+        default: 'pending'
     }
 })
 

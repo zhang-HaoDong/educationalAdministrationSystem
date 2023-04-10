@@ -11,3 +11,16 @@ export async function getClassById(id) {
         method: 'GET'
     })
 }
+
+export async function deleteClassById(id) {
+    return request(`/api/class/${id}`, {
+        method: 'DELETE'
+    })
+}
+
+export async function addClass(classInfo) {
+    return request('api/class', {
+        method: 'POST',
+        data: classInfo
+    })
+}

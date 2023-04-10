@@ -7,21 +7,24 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: '@umijs/max',
+    title: '教务管理系后台统',
   },
   routes: [
     {
       path: '/',
       redirect: '/home',
+      access: 'normalAdmin'
     },
     {
       name: '首页',
       path: '/home',
       component: './Home',
+      access: 'normalAdmin'
     },
     {
       name: '教师',
       path: '/teacher',
+      access: 'superAdmin',
       routes: [
         {
           name: '教师列表',
@@ -101,7 +104,7 @@ export default defineConfig({
       ]
     },
     {
-      name: '请销假',
+      name: '请销假审批',
       path: '/askforleave',
       component: './AskForLeave'
     },
@@ -118,8 +121,13 @@ export default defineConfig({
           name: '新增新闻',
           path: 'add_news',
           component: './News/AddNews'
-        }
+        },
       ]
+    },
+    {
+      path: '/login',
+      component: './Login',
+      menuRender: false,
     }
   ],
   npmClient: 'npm',

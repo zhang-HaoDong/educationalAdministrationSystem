@@ -7,6 +7,7 @@ const {
     getClassByMajorId,
     getClassByCounselorIdId
 } = require('../dao/classDao');
+const { getTeacherById } = require('../dao/teacherDao')
 
 //新增班级
 module.exports.addClassService = async function (classInfo) {
@@ -35,7 +36,15 @@ module.exports.getClassByIdService = async function (id) {
 
 // 根据专业id查询班级
 module.exports.getClassByMajorIdService = async function (majorId) {
-    return await getClassByMajorId(majorId)
+    const data = await getClassByMajorId(majorId);
+    const classes = data.map(async (item) => {
+        const counselorName = await getTeacherById(item.counselorId)
+        return {
+            ...item._doc,
+            counselorName: counselorName?.name
+        }
+    })
+    return await Promise.all(classes)
 }
 
 // 根据辅导员id查询班级

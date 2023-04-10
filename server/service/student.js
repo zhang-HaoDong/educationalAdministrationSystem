@@ -60,8 +60,8 @@ module.exports.getStudentByPageService = async function (pageInfo) {
         const { majorName } = await getMajorById(item.majorId)
         return {
             ...item._doc,
-            className,
-            majorName
+            className: className,
+            majorName: majorName
         }
     })
     return await Promise.all(data)

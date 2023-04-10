@@ -1,17 +1,56 @@
 // 运行时配置
-
-// 全局初始化数据配置，用于 Layout 用户信息和权限初始化
-// 更多信息见文档：https://umijs.org/docs/api/runtime-config#getinitialstate
-export async function getInitialState(){
-  return { name: '@umijs/max' };
+import { message } from 'antd'
+import { whoami, } from './services/teacher'
+export async function getInitialState() {
+  if (location.pathname === '/login') {
+    // 强制进入login页面
+    // 判断是否含有有效的token
+    const token = localStorage.getItem('token');
+    if (token) {
+      const { data } = await whoami();
+      if (data) {
+        message.warning('请先退出登录')
+        setTimeout(() => {
+          history.go(-1)
+        }, 1500);
+      }
+    }
+  }
+  else {
+    //强制跳转登陆页面
+    const token = localStorage.getItem('token');
+    if (!token) {
+      location.href = '/login'
+    } else {
+      const { data } = await whoami();
+      if (data) {
+        // token有效
+        return {
+          name: data.name,
+          avatar: data.avatar,
+          adminInfo: data,
+        }
+      } else {
+        // token无效
+        localStorage.removeItem('token');
+        location.href = '/login'
+      }
+    }
+  }
+  return;
 }
+
 
 export const layout = () => {
   return {
-    logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
+    logo: 'https://pro.upload.logomaker.com.cn/2019/12/02/rZCHl3WtWr30.jpg',
     menu: {
       locale: false,
     },
+    logout: () => {
+      localStorage.removeItem('token');
+      location.href = '/login'
+    }
   };
 };
 

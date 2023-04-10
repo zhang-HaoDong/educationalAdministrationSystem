@@ -44,3 +44,18 @@ export async function updateTeacher(id, teacherInfo) {
         data: teacherInfo
     })
 }
+
+// 教师登陆
+export async function login(loginInfo) {
+    return request('/api/teacher/login', {
+        method: 'POST',
+        data: loginInfo
+    })
+}
+
+// whoami
+export async function whoami() {
+    return request('/api/teacher/whoami', {
+        method: 'GET'
+    })
+}
