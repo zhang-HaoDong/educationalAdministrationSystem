@@ -122,6 +122,18 @@ export default defineConfig({
           path: 'add_news',
           component: './News/AddNews'
         },
+        {
+          name: '编辑新闻',
+          path: 'edit_news/:id',
+          component: './News/EditNews',
+          hideInMenu: true
+        },
+        {
+          name: '新闻详情',
+          path: 'detail_news/:id',
+          component: './News/NewsDetail',
+          hideInMenu: true
+        }
       ]
     },
     {

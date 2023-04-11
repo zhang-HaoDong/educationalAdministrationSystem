@@ -4,7 +4,7 @@ import { Form, Input, Image, Upload, Button, Space, message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
-export default function BookForm({ type, newsInfo, setNesInfo, onsubmit }) {
+export default function NewsForm({ type, newsInfo, setNewsInfo, onsubmit }) {
     const formRef = useRef();
     const editorRef = useRef();
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function BookForm({ type, newsInfo, setNesInfo, onsubmit }) {
         // 编辑时的数据回填
         if (type === 'edit' && formRef.current && isFirst && Object.getOwnPropertyNames(newsInfo).length !== 0) {
             formRef.current.setFieldsValue(newsInfo);
-            editorRef.current.getInstance().setHTML(newsInfo.bookIntro)
+            editorRef.current.getInstance().setHTML(newsInfo.content)
             setIsFirst(false)
         }
         if (type === 'edit' && formRef.current) {
@@ -22,16 +22,16 @@ export default function BookForm({ type, newsInfo, setNesInfo, onsubmit }) {
         }
     }, [newsInfo])
     // 更新新增新闻信息函数
-    function updateBookInfo(val, key) {
+    function updateNewsInfo(val, key) {
         const newNewsInfo = { ...newsInfo }
         newNewsInfo[key] = val;
-        setNesInfo(newNewsInfo)
+        setNewsInfo(newNewsInfo)
     }
     // 上传封面
     function handleChange(e) {
         if (e.file.status === 'done') {
             const { data } = e.file.response;
-            updateBookInfo(data, 'cover')
+            updateNewsInfo(data, 'cover')
         }
     }
     // 取消新增
@@ -65,7 +65,7 @@ export default function BookForm({ type, newsInfo, setNesInfo, onsubmit }) {
         >
             {/* 标题 */}
             <Form.Item
-                name='newsTitle'
+                name='title'
                 label='新闻标题'
                 rules={[{
                     required: true,
@@ -74,8 +74,8 @@ export default function BookForm({ type, newsInfo, setNesInfo, onsubmit }) {
             >
                 <Input
                     placeholder='请填写新闻标题'
-                    value={newsInfo.newsTitle}
-                    onChange={(e) => updateBookInfo(e.target.value, 'newsTitle')}
+                    value={newsInfo.title}
+                    onChange={(e) => updateNewsInfo(e.target.value, 'title')}
                 />
             </Form.Item>
 
@@ -98,7 +98,7 @@ export default function BookForm({ type, newsInfo, setNesInfo, onsubmit }) {
                     listType="picture-card"
                     maxCount={1}
                     showUploadList={false}
-                    action="/api/upload"
+                    action="/static/upload"
                     onChange={handleChange}
                 >
                     <div>
