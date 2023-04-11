@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 const { Meta } = Card;
 const HomePage = () => {
+    const [count, setCount] = useState(0);
     const [newsInfo, setNewsInfo] = useState([])
     const navigate = useNavigate()
 
@@ -16,12 +17,13 @@ const HomePage = () => {
             const { data } = await getNews();
             setNewsInfo(data)
         })()
-    })
+    }, [count])
 
-    async function handleDelete(e,id) {
+    async function handleDelete(e, id) {
         e.stopPropagation()
         await deleteNews(id);
-        message.error('删除成功')
+        setCount(count + 1)
+        message.error('删除成功');
     }
 
     const newsList = newsInfo.map(item => (
@@ -53,9 +55,9 @@ const HomePage = () => {
                     e.stopPropagation()
                     navigate(`/news/edit_news/${item._id}`)
                 }} />,
-                <DeleteOutlined key='delete' onClick={(e) => handleDelete(e,item._id)} />
+                <DeleteOutlined key='delete' onClick={(e) => handleDelete(e, item._id)} />
             ]}
-            onClick={()=>navigate(`/news/detail_news/${item._id}`)}
+            onClick={() => navigate(`/news/detail_news/${item._id}`)}
         >
             <Meta
                 title={item.title > 0 ? (item.title.substring(0, 10) + '...') : item.title}

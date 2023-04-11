@@ -10,7 +10,7 @@ export default function NewsDetail() {
             const {data} = await getNewsById(id)
             setDetail(data)
         })()
-    })
+    },[id])
     return (
         <div dangerouslySetInnerHTML={{
             __html:detail.content

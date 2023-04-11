@@ -119,6 +119,7 @@ export default function NewsForm({ type, newsInfo, setNewsInfo, onsubmit }) {
                     initialEditType="markdown"
                     useCommandShortcut={true}
                     ref={editorRef}
+                    usageStatistics={false}
                 />
             </Form.Item>
 
