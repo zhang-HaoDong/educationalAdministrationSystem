@@ -18,9 +18,9 @@ module.exports.deleteClassScheduleService = async function (id) {
     })
 }
 
-// 查询所有的课表
-module.exports.getClassScheduleService = async function(){
-    return await getClassSchedule();
+// 根据classID查询
+module.exports.getClassScheduleService = async function(classId){
+    return await getClassSchedule(classId);
 }
 
 // 修改课表信息

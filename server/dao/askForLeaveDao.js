@@ -41,10 +41,13 @@ module.exports.getLeaveRequestByTecIdDao = async function (tecId) {
  * @param {Object} pageInfo 分页信息
  * @returns 分页返回数据
  */
-module.exports.getAllLeaveRequestDao = async function (pageInfo) {
+module.exports.getAllLeaveRequestDao = async function (isPass, pageInfo) {
     const current = (pageInfo.current - 1) * pageInfo.pageSize
-    return await AskForLeave.find().skip(current).limit(pageInfo.pageSize)
+    return await AskForLeave.find({
+        isPass
+    }).skip(current).limit(pageInfo.pageSize)
 }
+
 
 /**
  * 根据id修改假条信息

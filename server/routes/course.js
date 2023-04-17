@@ -22,8 +22,9 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 // 查询所有的课程
-router.get('/', async (req, res, next) => {
-    const data = await getCourseService();
+router.get('/:id', async (req, res, next) => {
+    const majorId = req.params.id;
+    const data = await getCourseService(majorId);
     res.send(getResult(data))
 })
 

@@ -50,7 +50,7 @@ export const layout = () => {
     logout: () => {
       localStorage.removeItem('token');
       location.href = '/login'
-    }
+    },
   };
 };
 

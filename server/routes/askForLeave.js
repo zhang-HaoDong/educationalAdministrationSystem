@@ -39,7 +39,8 @@ router.get('/', async (req, res, next) => {
   const pageInfo = {};
   pageInfo.current = req.query.current;
   pageInfo.pageSize = req.query.pageSize;
-  const data = await getAllLeaveRequestService(pageInfo);
+  const isPass = req.query.isPass
+  const data = await getAllLeaveRequestService(isPass ,pageInfo);
   res.send(getResult(data))
 })
 

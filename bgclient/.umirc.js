@@ -72,6 +72,16 @@ export default defineConfig({
       component: './Class'
     },
     {
+      name:'课程',
+      path:'/course',
+      component:'./Course'
+    },
+    {
+      name:'课表',
+      path:'/classschedule',
+      component:'./ClassSchedule'
+    },
+    {
       name: '成绩',
       path: '/scoreentry',
       routes: [

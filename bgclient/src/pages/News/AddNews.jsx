@@ -10,8 +10,8 @@ export default function AddNews() {
     const [newsInfo, setNewsInfo] = useState({});
     const navigate = useNavigate()
     // 提交新增书籍请求
-    function onsubmit(editorVal) {
-        addNews({
+    async function onsubmit(editorVal) {
+        await addNews({
             ...newsInfo,
             content: editorVal
         })

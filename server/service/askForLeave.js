@@ -23,19 +23,19 @@ module.exports.getLeaveRequestByTecIdService = async function (tecId) {
 }
 
 // 分页获取所有的请假信息
-module.exports.getAllLeaveRequestService = async function (pageInfo = {
+module.exports.getAllLeaveRequestService = async function (isPass, pageInfo = {
     current: 1,
     pageSize: 10
 }) {
-    return await getAllLeaveRequestDao(pageInfo)
+    return await getAllLeaveRequestDao(isPass,pageInfo)
 }
 
 // 根据id修改假条信息
-module.exports.updateLeaveRequestService = async function (id,requestInfo){
-    return await updateLeaveRequestDao(id,requestInfo)
+module.exports.updateLeaveRequestService = async function (id, requestInfo) {
+    return await updateLeaveRequestDao(id, requestInfo)
 }
 
 // 根据id删除假条信息
-module.exports.deleteLeaveRequestService = async function (id){
+module.exports.deleteLeaveRequestService = async function (id) {
     return await deleteLeaveRequestDao(id)
 }

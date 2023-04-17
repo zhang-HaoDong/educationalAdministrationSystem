@@ -18,15 +18,17 @@ module.exports.deleteClassSchedule = async function (id) {
 // 修改一个课表
 module.exports.updateClassSchedule = async function (id, info) {
     return await ClassSchedule.updateOne({
-        _id: id
+        classId: id
     }, {
         ...info
     })
 }
 
-// 查询所有课表
-module.exports.getClassSchedule = async function () {
-    return await ClassSchedule.find()
+// 根据classId查询
+module.exports.getClassSchedule = async function (classId) {
+    return await ClassSchedule.find({
+        classId
+    })
 }
 
 // 根据id查询课表

@@ -21,14 +21,14 @@ router.delete('/:id', async (req, res, next) => {
     res.send(getResult(data))
 })
 
-// 查询所有课表信息
-router.get('/', async (req, res, next) => {
-    const data = await getClassScheduleService();
+// 根据classid查找
+router.get('/class/:id', async (req, res, next) => {
+    const data = await getClassScheduleService(req.params.id);
     res.send(getResult(data))
 })
 
 // 修改一条课表信息
-router.patch('/:id', async (req, res, next) => {
+router.patch('/class/:id', async (req, res, next) => {
     const id = req.params.id;
     const info = req.body;
     const data = await updateClassScheduleService(id,info);

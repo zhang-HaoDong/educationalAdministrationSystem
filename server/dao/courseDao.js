@@ -15,9 +15,13 @@ module.exports.deleteCourse = async function (id) {
     })
 }
 
-// 查询所有课程
-module.exports.getAllCourse = async function () {
-    return await Course.find().sort();
+// 根据majorID查询课程
+module.exports.getAllCourse = async function (majorId) {
+    return await Course.find(
+        {
+            majorId
+        }
+    ).sort();
 }
 
 // 修改课程名称

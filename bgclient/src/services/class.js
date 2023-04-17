@@ -19,7 +19,7 @@ export async function deleteClassById(id) {
 }
 
 export async function addClass(classInfo) {
-    return request('api/class', {
+    return request('/api/class', {
         method: 'POST',
         data: classInfo
     })

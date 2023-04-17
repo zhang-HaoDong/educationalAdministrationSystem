@@ -52,6 +52,8 @@ const askForLeaveSchema = new mongoose.Schema({
         type: String,
         default: 'pending'
     }
+},{
+    timestamps:true
 })
 
 module.exports = mongoose.model('AskForLeave', askForLeaveSchema)

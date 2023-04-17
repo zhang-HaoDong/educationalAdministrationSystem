@@ -14,9 +14,9 @@ module.exports.deleteCourseService = async function (id) {
     return await deleteCourse(id);
 }
 
-// 查询所有课程
-module, exports.getCourseService = async function () {
-    return await getAllCourse();
+// 根据majorid查询所有课程
+module, exports.getCourseService = async function (majorId) {
+    return await getAllCourse(majorId);
 }
 
 // 修改课程信息
