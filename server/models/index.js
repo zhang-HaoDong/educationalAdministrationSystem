@@ -5,6 +5,6 @@ exports.Evaluation = require('./Evaluation')
 exports.AskForLeave = require('./AskForLeave');
 exports.Class = require('./Class');
 exports.NAN = require('./NAN');
-exports.EvalgituationQuestion = require('./EvaluationQuestion');
+exports.EvaluationQuestion = require('./EvaluationQuestion');
 exports.Teacher = require('./Teacher')
 exports.Major = require('./Major')

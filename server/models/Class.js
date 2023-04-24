@@ -7,7 +7,10 @@ const ClassSchema = new mongoose.Schema({
         required: true
     },
     majorId: String,
-    counselorId: String
+    counselorId: {
+        type:String,
+        required:true
+    }
 })
 
 module.exports = mongoose.model('Class', ClassSchema)

@@ -38,10 +38,10 @@ module.exports.getClassByIdService = async function (id) {
 module.exports.getClassByMajorIdService = async function (majorId) {
     const data = await getClassByMajorId(majorId);
     const classes = data.map(async (item) => {
-        const counselorName = await getTeacherById(item.counselorId)
+        const {name} = await getTeacherById(item.counselorId)
         return {
             ...item._doc,
-            counselorName: counselorName?.name
+            counselorName: name
         }
     })
     return await Promise.all(classes)

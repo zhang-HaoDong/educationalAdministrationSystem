@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 
 const evaluationQuestionSchema = new mongoose.Schema({
     evaluationQuestion: {
-        question: String
+        type: String,
+        required: true
     }
 })
 
-module.exports = mongoose.model('EvaluationQuestion',evaluationQuestionSchema)
+module.exports = mongoose.model('EvaluationQuestion', evaluationQuestionSchema)

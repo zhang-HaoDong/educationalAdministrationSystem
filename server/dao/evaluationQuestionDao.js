@@ -1,9 +1,9 @@
 const { EvaluationQuestion } = require('../models')
 
 // 添加一个评教问题
-module.exports.addEvaluationQuestion = async function (data) {
+module.exports.addEvaluationQuestion = async function ({evaluationQuestion}) {
     return await EvaluationQuestion.create({
-        evaluationQuestion: data.question
+        evaluationQuestion,
     })
 }
 
@@ -15,11 +15,11 @@ module.exports.deleteEvaluationById = async function (id) {
 }
 
 // 修改一个评教问题
-module.exports.updateEvaluationQuestion = async function (id, { question }) {
+module.exports.updateEvaluationQuestion = async function (id, { evaluationQuestion }) {
     return await EvaluationQuestion.updateOne({
         _id: id
     }, {
-        evaluationQuestion: question,
+        evaluationQuestion,
     })
 }
 
