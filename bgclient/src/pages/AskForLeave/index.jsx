@@ -1,6 +1,6 @@
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useRef, useState } from 'react'
-import { getAskForLeave, deleteAskForLeave } from '../../services/askForLeave'
+import { getAskForLeave, deleteAskForLeave, updateAskForLeave } from '../../services/askForLeave'
 import { Button, Popconfirm, Descriptions, Modal, Image, message, Radio } from 'antd'
 const HomePage = () => {
     const formRef = useRef()
@@ -8,7 +8,6 @@ const HomePage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [curAskDetail, setCurAskDetail] = useState({})
     const [isPass, setIsPass] = useState('pending')
-    console.log(isPass);
 
     function handleDetail(row) {
         setIsModalOpen(true)
@@ -19,10 +18,18 @@ const HomePage = () => {
         formRef.current.reload()
         message.error('删除成功')
     }
-    function onChange(e){
+    function onChange(e) {
         setIsPass(e.target.value)
         formRef.current.reload()
-    }   
+    }
+    async function handelPass(state) {
+        await updateAskForLeave(curAskDetail._id, {
+            isPass: state
+        })
+        message.success('已审批')
+        setIsModalOpen(false)
+        formRef.current.reload()
+    }
     const columns = [
         {
             title: '序号',
@@ -32,7 +39,7 @@ const HomePage = () => {
         {
             title: '姓名',
             align: 'center',
-            dataIndex: 'stuId'
+            dataIndex: 'studentName'
         },
         {
             title: '请假类型',
@@ -80,7 +87,7 @@ const HomePage = () => {
         {
             title: '负责老师',
             align: "center",
-            dataIndex: 'tecId'
+            dataIndex: 'teacherName'
         },
         {
             title: '联系电话',
@@ -123,14 +130,14 @@ const HomePage = () => {
         {
             label: '未审批',
             value: 'pending'
-        }, 
-        { 
-            label:'已通过',
-            value:'success'
         },
         {
-            label:'已拒绝',
-            value:'refuse'
+            label: '已通过',
+            value: 'success'
+        },
+        {
+            label: '已拒绝',
+            value: 'refuse'
         }
     ]
     return (
@@ -142,7 +149,7 @@ const HomePage = () => {
                 optionType="button"
                 buttonStyle="solid"
                 style={{
-                    marginBottom:'32px'
+                    marginBottom: '32px'
                 }}
             />
             <ProTable
@@ -181,12 +188,14 @@ const HomePage = () => {
                     <Button
                         type='primary'
                         style={{ marginRight: '16px' }}
+                        onClick={() => handelPass('success')}
                     >
                         同意
                     </Button>
                     <Button
                         type='default'
                         style={{ backgroundColor: 'rgb(205, 32, 31)', color: '#fff' }}
+                        onClick={() => handelPass('refuse')}
                     >
                         拒绝
                     </Button>

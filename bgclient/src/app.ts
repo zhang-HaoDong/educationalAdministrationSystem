@@ -1,6 +1,9 @@
 // 运行时配置
 import { message } from 'antd'
 import { whoami, } from './services/teacher'
+// const logo = require('./assets/logo.png')
+import logo from './assets/logo.png'
+
 export async function getInitialState() {
   if (location.pathname === '/login') {
     // 强制进入login页面
@@ -43,7 +46,7 @@ export async function getInitialState() {
 
 export const layout = () => {
   return {
-    logo: 'https://pro.upload.logomaker.com.cn/2019/12/02/rZCHl3WtWr30.jpg',
+    logo: logo,
     menu: {
       locale: false,
     },

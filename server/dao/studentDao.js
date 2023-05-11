@@ -52,3 +52,10 @@ module.exports.isExistStudent = async function (stuInfo) {
 module.exports.isExist = async function (stuInfo) {
     return await Student.exists(stuInfo)
 }
+
+// 根据班级id获取学生信息
+module.exports.getStudentByClassId = async function (classId) {
+    return await Student.find({
+        classId
+    })
+}

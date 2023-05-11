@@ -1,10 +1,25 @@
-import { PageContainer } from '@ant-design/pro-components';
-
+import { Image } from 'antd'
+import logo from '../../assets/logo.png'
 const HomePage = () => {
   return (
-    <PageContainer>
-      <h1>%DASH__BOARD%</h1>
-    </PageContainer>
+    <div style={{
+      height: '100vh',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
+      <Image src={logo} style={
+        {
+          width: '128px'
+        }
+      }></Image>
+      <span style={{
+        fontSize: '48px',
+        height: '48px',
+        lineHeight: '48px',
+      }}>欢迎使用教务管理系统后台</span>
+    </div>
   );
 };
 

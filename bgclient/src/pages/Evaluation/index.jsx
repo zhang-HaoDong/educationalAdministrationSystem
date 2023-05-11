@@ -2,7 +2,7 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useRef, useState } from 'react';
 import { useModel } from '@umijs/max'
 import { getEvaluationByTecId } from '../../services/evaluation'
-import { Button,Modal,Descriptions } from 'antd';
+import { Button, Modal, Descriptions } from 'antd';
 
 const HomePage = () => {
     const formRef = useRef()
@@ -12,7 +12,7 @@ const HomePage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
 
-    function handleDetail(row){
+    function handleDetail(row) {
         setcurEvaluation(row.evaluation)
         setIsModalOpen(true)
     }
@@ -26,12 +26,12 @@ const HomePage = () => {
         {
             title: '教师名称',
             align: 'center',
-            dataIndex: 'tecId'
+            dataIndex: 'teacherName'
         },
         {
             title: '学生名称',
             align: 'center',
-            dataIndex: 'stuId'
+            dataIndex: 'studentName'
         },
         {
             title: '总分',

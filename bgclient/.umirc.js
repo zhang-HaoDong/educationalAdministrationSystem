@@ -7,7 +7,7 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: '教务管理系后台统',
+    title: '教务管理系统后台',
   },
   routes: [
     {
@@ -72,30 +72,19 @@ export default defineConfig({
       component: './Class'
     },
     {
-      name:'课程',
-      path:'/course',
-      component:'./Course'
+      name: '课程',
+      path: '/course',
+      component: './Course'
     },
     {
-      name:'课表',
-      path:'/classschedule',
-      component:'./ClassSchedule'
+      name: '课表',
+      path: '/classschedule',
+      component: './ClassSchedule'
     },
     {
       name: '成绩',
-      path: '/scoreentry',
-      routes: [
-        {
-          name: '成绩列表',
-          path: 'list',
-          component: './ScoreEntry'
-        },
-        {
-          name: '成绩录入',
-          path: 'entry',
-          component: './ScoreEntry/Entry'
-        }
-      ]
+      path: '/scoreentry/list',
+      component: './ScoreEntry'
     },
     {
       name: '评教',

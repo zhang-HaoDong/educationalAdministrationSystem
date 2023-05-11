@@ -45,3 +45,17 @@ export async function getStudentById(id) {
         method: 'GET'
     })
 }
+
+// 根据教师id获取学生
+export async function getStudentByTeacherId(id) {
+    return request(`/api/student/teacher/${id}`, {
+        method: "GET"
+    })
+}
+
+// 根据班级获取学生
+export async function getStudentByClassId(id) {
+    return request(`/api/student/class/${id}`, {
+        method: 'GET'
+    })
+}

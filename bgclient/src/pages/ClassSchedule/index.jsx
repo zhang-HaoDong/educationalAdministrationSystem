@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-components'
 import { Space, Select, Card, Button, message } from 'antd'
 import { getAllMajor } from '../../services/major'
 import { getClassByMajorId } from '../../services/class'
-import { getClassScheduleByClassID, addClassSchedule,editClassSchedule } from '../../services/classSchedule'
+import { getClassScheduleByClassID, addClassSchedule, editClassSchedule } from '../../services/classSchedule'
 import { getCourseByMajorId } from '../../services/course'
 
 const gridStyle = {
@@ -46,7 +46,8 @@ export default function ClassSchedule() {
     if (!curClassId) return
     (async () => {
       const { data } = await getClassScheduleByClassID(curClassId)
-      if (data[0].courses.length === 0) {
+      if (data.length === 0) {
+        setIsEdit(false)
         setClassScheduleInfo(
           [
             [
@@ -114,7 +115,7 @@ export default function ClassSchedule() {
         return
       }
       setIsEdit(true)
-      setClassScheduleInfo(data[0].courses)
+      setClassScheduleInfo(data[0]?.courses)
     })()
   }, [curClassId])
 
@@ -129,7 +130,7 @@ export default function ClassSchedule() {
     }
     if (isEdit) {
       await editClassSchedule(curClassId, {
-        courses:classScheduleInfo
+        courses: classScheduleInfo
       })
       message.success('编辑成功')
       return
@@ -151,7 +152,7 @@ export default function ClassSchedule() {
   }))
   const coursesOptions = courses.map(item => ({
     label: item.courseName,
-    value: item._id
+    value: item.courseName
   }))
   const classScheduleList = []
   classScheduleInfo.forEach((item, i) => (
@@ -183,7 +184,6 @@ export default function ClassSchedule() {
               onChange={e => {
                 const newArr = [...classScheduleInfo]
                 newArr[i][j] = e
-                console.log(newArr);
                 setClassScheduleInfo(newArr)
               }}
               options={coursesOptions}

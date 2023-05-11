@@ -6,6 +6,8 @@ const {
     updateLeaveRequestDao,
     deleteLeaveRequestDao,
 } = require('../dao/askForLeaveDao');
+const { getStudentById } = require('../dao/studentDao')
+const { getTeacherById } = require('../dao/teacherDao')
 
 // 添加一个请销假信息
 module.exports.addLeaveRequestService = async function (leaveRequestInfo) {
@@ -27,7 +29,24 @@ module.exports.getAllLeaveRequestService = async function (isPass, pageInfo = {
     current: 1,
     pageSize: 10
 }) {
-    return await getAllLeaveRequestDao(isPass,pageInfo)
+    const res = await getAllLeaveRequestDao(isPass, pageInfo)
+    const data = res.map(async (item) => {
+        const studentName = await getStudentById(item.stuId)
+        const teacherName = await getTeacherById(item.tecId)
+        if (teacherName && studentName) {
+            return {
+                ...item._doc,
+                studentName: studentName.name,
+                teacherName: teacherName.name
+            }
+        }
+        return {
+            ...item._doc,
+            studentName: '-',
+            teacherName: '-'
+        }
+    })
+    return await Promise.all(data)
 }
 
 // 根据id修改假条信息

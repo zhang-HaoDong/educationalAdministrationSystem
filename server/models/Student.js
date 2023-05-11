@@ -66,12 +66,7 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    scores: {
-        type: [{
-            sbjId: String,
-            sbjScore: Number
-        }]
-    },
+    scores: Object,
 });
 
 // 通过mongoose定义模型并导出 第一个参数代表数据库中集合的名称 第二个代表结构

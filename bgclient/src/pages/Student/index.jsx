@@ -1,18 +1,31 @@
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { Switch, Button, Popconfirm, message, Modal, Descriptions, Image } from 'antd'
-import { useState, useRef } from 'react'
-import { getStudentByPage, updateStudent, deleteStudent } from '../../services/student'
+import { Switch, Button, Popconfirm, message, Modal, Descriptions, Image, Select } from 'antd'
+import { useState, useRef, useEffect } from 'react'
+import { getStudentByClassId, updateStudent, deleteStudent } from '../../services/student'
+import { getClassByTeacherId } from '../../services/class'
 import { useNavigate } from 'react-router-dom'
+import { useModel } from '@umijs/max'
 const Student = () => {
     const [pagination, setPagination] = useState({
         current: 1,
         pageSize: 10
     })
-    const [userInfo, setuserInfo] = useState({})
+    const [userInfo, setUserInfo] = useState({})
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [messageApi, contextHolder] = message.useMessage();
+    const [classesInfo, setClassesInfo] = useState([])
+    const [classId, setClassId] = useState('')
     const formRef = useRef()
     const navigate = useNavigate()
+    const { initialState } = useModel('@@initialState');
+
+    useEffect(() => {
+        (async () => {
+            const teacherId = initialState?.adminInfo._id
+            const { data } = await getClassByTeacherId(teacherId)
+            setClassesInfo(data)
+        })()
+    }, [])
     const columns = [
         {
             title: '序号',
@@ -120,7 +133,7 @@ const Student = () => {
     }
     // 详情点击
     function handleDetail(row) {
-        setuserInfo(row);
+        setUserInfo(row);
         setIsModalOpen(true)
     }
     // 删除学生
@@ -132,10 +145,29 @@ const Student = () => {
         })
         formRef.current.reload()
     }
+
+    const classOptions = classesInfo.map(item => ({
+        label: item.className,
+        value: item._id
+    }))
     return (
         <>
             {contextHolder}
             <PageContainer>
+                <span>班级：</span>
+                <Select
+                    placeholder="请选择班级"
+                    style={{
+                        width: 120,
+                        marginBottom: '24px'
+                    }}
+                    onChange={e => {
+                        setClassId(e)
+                        formRef.current.reload();
+                    }
+                    }
+                    options={classOptions}
+                />
                 <ProTable
                     scroll={{ x: 2000 }}
                     actionRef={formRef}
@@ -148,7 +180,8 @@ const Student = () => {
                         onChange: handlePageChange
                     }}
                     request={async (params) => {
-                        const res = await getStudentByPage(params);
+                        if (!classId) return
+                        const res = await getStudentByClassId(classId);
                         return {
                             success: !res.code,
                             data: res.data,

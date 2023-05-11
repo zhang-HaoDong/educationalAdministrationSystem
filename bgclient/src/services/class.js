@@ -24,3 +24,9 @@ export async function addClass(classInfo) {
         data: classInfo
     })
 }
+
+export async function getClassByTeacherId(id) {
+    return request(`/api/class/teacher/${id}`, {
+        method: 'GET'
+    })
+}

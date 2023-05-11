@@ -8,9 +8,10 @@ const {
     getStudentByTeacherIdService,
     updateStudentService,
     stuLoginService,
-    isExistService
+    isExistService,
+    getStudentByClassId
 } = require('../service/student');
-const { publishJWT, vertifyJWT } = require('../utils/jwt')
+const { publishJWT, vertifyJWT } = require('../utils/jwt');
 
 // 注册
 router.post('/register', async (req, res) => {
@@ -31,7 +32,7 @@ router.post('/login', async (req, res) => {
 router.get('/whoami', async (req, res) => {
     const loginInfo = vertifyJWT(req)
     if (!loginInfo) {
-        res.send(getError('token已失,请重新登陆', 500))
+        res.send(getError('token已失效,请重新登陆', 500))
     } else {
         const userInfo = await getStudentByIdService(loginInfo._id)
         res.send(getResult(userInfo))
@@ -78,6 +79,12 @@ router.get('/', async (req, res) => {
 router.post('/isexist', async (req, res) => {
     const stuInfo = req.body;
     const result = await isExistService(stuInfo);
+    res.send(getResult(result))
+})
+
+// 班级id获取学生
+router.get('/class/:id', async (req, res) => {
+    const result = await getStudentByClassId(req.params.id)
     res.send(getResult(result))
 })
 

@@ -1,0 +1,8 @@
+.avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.baseInfo{
+    margin-top: 48px;
+}

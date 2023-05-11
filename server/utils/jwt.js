@@ -18,7 +18,6 @@ module.exports.vertifyJWT = function (req) {
         return info._doc;
     } catch {
         // token已过期
-        console.log('国旗');
         return null;
     }
 }
