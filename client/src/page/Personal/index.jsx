@@ -18,7 +18,7 @@ export default function Personal() {
     useEffect(() => {
         if (!userInfo.counselorId) return
         (async () => {
-            const data = await getTeacherById(userInfo.counselorId)
+            const { data } = await getTeacherById(userInfo.counselorId)
             setTeacherInfo(data)
         })()
     }, [userInfo.counselorId])
@@ -51,6 +51,7 @@ export default function Personal() {
         }))
         handleCancel()
     }
+    console.log(teacherInfo);
     return (
         <div>
             <div className="avatar">
@@ -86,7 +87,7 @@ export default function Personal() {
                     <Descriptions.Item label="专业">{userInfo.majorName}</Descriptions.Item>
                     <Descriptions.Item label="班级">{userInfo.className}</Descriptions.Item>
                     <Descriptions.Item label="辅导员">{userInfo.teacherName}</Descriptions.Item>
-                    <Descriptions.Item label="辅导员联系方式">{teacherInfo?.tel}</Descriptions.Item>
+                    <Descriptions.Item label="辅导员联系方式">{teacherInfo.tel}</Descriptions.Item>
                     <Descriptions.Item label="辅导员微信">{teacherInfo?.wechat}</Descriptions.Item>
                     <Descriptions.Item label="辅导员邮箱">{teacherInfo?.mail}</Descriptions.Item>
                 </Descriptions>
