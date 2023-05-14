@@ -78,7 +78,6 @@ const HomePage = () => {
                     size='default'
                     column={5}
                 >
-                    <Descriptions.Item label="问题" span={5} >分数</Descriptions.Item>
                     {
                         curEvaluation.map(item => <Descriptions.Item label={item.questionId} span={3} key={item._id}>{item.score}</Descriptions.Item>)
                     }

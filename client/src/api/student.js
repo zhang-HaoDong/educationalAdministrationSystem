@@ -36,3 +36,10 @@ export function getStudentById(id) {
         method: 'GET'
     })
 }
+
+export function getStudentByClassId(id) {
+    return request({
+        url: `/api/student/class/${id}`,
+        method: 'GET'
+    })
+}
