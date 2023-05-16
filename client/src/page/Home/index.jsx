@@ -86,10 +86,10 @@ export default function Home() {
     let passNumber = 0
     let noPassNumber = 0
     askList.forEach(item => {
-        if (item.isPass) {
-            passNumber++
-        } else {
+        if (item.isPass === 'pending') {
             noPassNumber++
+        } else {
+            passNumber++
         }
     })
     return (
