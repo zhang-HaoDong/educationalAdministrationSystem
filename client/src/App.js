@@ -10,7 +10,7 @@ import { whoami } from './api/student'
 import { Layout, Menu } from 'antd';
 import RouteConfig from './router/routerConfig';
 import { useState } from 'react'
-import './app.css'
+import './App.css'
 import { NavLink } from 'react-router-dom'
 import Navbar from './components/Navbar';
 import LoginForm from './components/LoginForm';
