@@ -67,6 +67,11 @@ export default defineConfig({
       ]
     },
     {
+      name: '专业',
+      path: '/major',
+      component: './Major'
+    },
+    {
       name: '班级',
       path: '/class',
       component: './Class'
